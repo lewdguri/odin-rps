@@ -1,2 +1,2 @@
 # odin-rps
-rock paper scissors for the odin project
+This repository contains the neccessary code and resources for the odin project's rock paper scissors assignment.
