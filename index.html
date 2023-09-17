@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rock Paper Scissors!</title>
+    </head>
+    <body>
+        <script>
+            let score = {
+                "computer" : 0,
+                "player" : 0,
+            }
+            
+            const getComputerChoice = () => {
+                let choice = Math.floor(Math.random() * 3) + 1;
+
+                switch (choice) {
+                    case 1: 
+                        return "rock";
+                    case 2: 
+                        return "paper";
+                    case 3: 
+                        return "scissors";
+                    default:
+                        return;
+                }
+            }
+
+            const scorePoint = (user) => {
+                score[user]++;
+            }
+
+            const playRound = (playerChoice, computerChoice) => {
+                if (playerChoice === computerChoice) {
+                    console.log("Tie! No one scored.");
+                } else if (playerChoice === "rock" && computerChoice === "paper") {
+                    console.log("You lost! Computer scored a point.");
+                    scorePoint("computer");
+                } else if (playerChoice === "rock" && computerChoice === "scissors") {
+                    console.log("You win! You scored a point.");
+                    scorePoint("player");
+                } else if(playerChoice === "paper" && computerChoice === "scissors") {
+                    console.log("You lost! Computer scored a point.");
+                    scorePoint("computer");
+                } else if (playerChoice === "paper" && computerChoice === "rock") {
+                    console.log("You win! You scored a point.");
+                    scorePoint("player");
+                } else if (playerChoice === "scissors" && computerChoice === "rock") {
+                    console.log("You lost! Computer scored a point.");
+                    scorePoint("computer");
+                } else if (playerChoice === "scissors" && computerChoice === "paper") {
+                    console.log("You win! You scored a point.");
+                    scorePoint("player");
+                } else {
+                    console.log("something went wrong..");
+                }
+            }
+            const game = () => {
+                score["computer"] = 0;
+                score["player"] = 0;
+
+                for(let i = 0; i < 5; i++) {
+                    let playerChoice = prompt("Please enter your choice", "rock/paper/scissors");
+                    
+                    playRound(playerChoice.toLowerCase(), getComputerChoice());
+                }
+                
+                if(score.computer > score.player) {
+                    console.log("/////////\nYou Lost! Try again later!\n/////////");
+                } else  if(score.computer < score.player){
+                    console.log("/////////\nYou Win! Congratulations!\n/////////");
+                } else  if(score.computer == score.player){
+                    console.log("/////////\nTie! No one won!\n/////////")
+                } else {
+                    console.log("what happened??")
+                }
+            }
+        </script>
+    </body>
+</html>
